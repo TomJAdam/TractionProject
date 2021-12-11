@@ -5,7 +5,7 @@ public with sharing class ItemUtility {
 
     try {
       List<Item__c> itemList = [
-        SELECT Id, Name, Category__r.Name
+        SELECT Id, Name, Is_Checked_Out__c, Category__r.Name
         FROM Item__c
         WHERE Name LIKE :keyWord OR Category__r.Name LIKE :keyWord
         LIMIT 10
@@ -18,17 +18,13 @@ public with sharing class ItemUtility {
   }
 
   @AuraEnabled
-  public static SObject checkoutBook(String Id) {
+  public static Item__c checkoutBook(Id objectId) {
     try {
-      List<Item__c> items = [
-        SELECT Id, Is_Checked_Out__c
-        FROM Item__c
-        WHERE Id = :Id
-      ];
+      List<Item__c> items = [SELECT Id FROM Item__c WHERE Id = :objectId];
 
       Item__c item = items[0];
 
-      if (item.Is_Checked_Out__c) {
+      if (item.Is_Checked_Out__c == true) {
         throw new AuraHandledException('Book already checked out');
       }
 

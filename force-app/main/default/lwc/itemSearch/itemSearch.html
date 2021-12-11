@@ -15,7 +15,8 @@
             class="slds-grid slds-grid_align-spread slds-gutters slds-m-vertical_small"
           >
             <p>{item.Name}</p>
-            <c-checkout-button datasend="item"></c-checkout-button>
+            <p>{item.Is_Checked_Out__c}</p>
+            <c-checkout-button item={item}></c-checkout-button>
           </div>
         </template>
       </template>

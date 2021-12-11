@@ -1,11 +1,17 @@
 import { LightningElement, api } from "lwc";
-import checkoutBook from "@salesforce/apex/ItemUtility.findItems";
+import checkoutBook from "@salesforce/apex/ItemUtility.checkoutBook";
 
 export default class CheckoutButton extends LightningElement {
   @api
-  handleClick(event) {
-    console.log("event :", event);
+  item;
 
-    checkoutBook(event.target.Id);
+  handleClick() {
+    checkoutBook({ objectId: this.item.Id })
+      .then((result) => {
+        console.log("result :", result);
+      })
+      .catch((error) => {
+        console.log("error", error);
+      });
   }
 }
