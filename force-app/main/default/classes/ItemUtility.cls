@@ -18,17 +18,19 @@ public with sharing class ItemUtility {
   }
 
   @AuraEnabled
-  public static Item__c checkoutBook(Id objectId) {
+  public static Item__c checkoutItem(Id objectId) {
     try {
-      List<Item__c> items = [SELECT Id FROM Item__c WHERE Id = :objectId];
+      List<Item__c> items = [
+        SELECT Id, Is_Checked_Out__c
+        FROM Item__c
+        WHERE Id = :objectId
+      ];
 
       Item__c item = items[0];
 
       if (item.Is_Checked_Out__c == true) {
         throw new AuraHandledException('Book already checked out');
       }
-
-      System.debug(item);
 
       item.Is_Checked_Out__c = true;
       update item;
