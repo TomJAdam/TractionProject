@@ -20,7 +20,7 @@ export default class ItemSearch extends LightningElement {
     }, DELAY);
   }
 
-  connectedCallback(event) {
+  connectedCallback() {
     findAccounts()
       .then((res) => {
         const accounts = res.map(({ Id, Name }) => {

@@ -27,7 +27,16 @@
           >
             <p>{item.Name}</p>
             <p>{item.Is_Checked_Out__c}</p>
-            <c-checkout-button item={item}></c-checkout-button>
+            <div>
+              <c-checkout-button
+                item={item}
+                account={selectedOpt}
+              ></c-checkout-button>
+              <c-return-button
+                item={item}
+                account={selectedOpt}
+              ></c-return-button>
+            </div>
           </div>
         </template>
       </template>

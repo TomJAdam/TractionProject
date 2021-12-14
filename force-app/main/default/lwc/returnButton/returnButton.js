@@ -1,19 +1,19 @@
 import { LightningElement, api } from "lwc";
-import checkoutBook from "@salesforce/apex/ItemUtility.checkoutBook";
+import returnBook from "@salesforce/apex/ItemUtility.returnBook";
 import { ShowToastEvent } from "lightning/platformShowToastEvent";
 
-export default class CheckoutButton extends LightningElement {
+export default class ReturnButton extends LightningElement {
   @api
   item;
   @api
   account;
 
   handleClick() {
-    checkoutBook({ objectId: this.item.Id, accountId: this.account })
+    returnBook({ objectId: this.item.Id, accountId: this.account })
       .then(() => {
         const evt = new ShowToastEvent({
           title: "Success",
-          message: "Item successfully checked out",
+          message: "Item successfully returned",
           variant: "success"
         });
         this.dispatchEvent(evt);
@@ -21,7 +21,7 @@ export default class CheckoutButton extends LightningElement {
       .catch((e) => {
         const evt = new ShowToastEvent({
           title: "Error",
-          message: "Item is already checked out",
+          message: "Item is still available",
           variant: "warning"
         });
         this.dispatchEvent(evt);
