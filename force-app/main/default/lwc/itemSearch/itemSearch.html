@@ -1,5 +1,5 @@
 <template>
-  <lightning-card title="Select Account" icon-name="custom:custom63">
+  <lightning-card title="Select Account" icon-name="custom:custom27">
     <div class="slds-m-around_medium">
       <lightning-combobox
         name="progress"
@@ -10,7 +10,7 @@
       ></lightning-combobox>
     </div>
   </lightning-card>
-  <lightning-card title="Search Items" icon-name="custom:custom63">
+  <lightning-card title="Search Items" icon-name="custom:custom39">
     <div class="slds-m-around_medium">
       <lightning-input
         type="search"
@@ -21,16 +21,16 @@
       ></lightning-input>
       <template if:true={items.data}>
         <div
-          class="slds-grid slds-wrap slds-gutters slds-m-vertical_small slds-border_bottom slds-m-bottom_small"
+          class="slds-grid slds-wrap slds-gutters slds-m-vertical_small slds-p-vertical_medium slds-border_bottom slds-m-bottom_small slds-theme_success slds-text-align_center"
         >
           <p class="slds-size_1-of-3 slds-text-heading_medium">Name</p>
-          <p class="slds-size_1-of-3 slds-text-heading_medium">Status</p>
+          <p class="slds-size_1-of-3 slds-text-heading_medium">Checked Out?</p>
           <p class="slds-size_1-of-3 slds-text-heading_medium">Controls</p>
         </div>
         <template for:each={items.data} for:item="item">
           <div
             key={item.Id}
-            class="slds-grid slds-wrap slds-gutters slds-m-vertical_small"
+            class="slds-grid slds-wrap slds-gutters slds-m-vertical_small slds-text-align_center"
           >
             <p class="slds-size_1-of-3">{item.Name}</p>
             <p class="slds-size_1-of-3">{item.Is_Checked_Out__c}</p>

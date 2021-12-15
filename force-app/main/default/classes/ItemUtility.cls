@@ -8,7 +8,7 @@ public with sharing class ItemUtility {
         SELECT Id, Name, Is_Checked_Out__c, Category__r.Name
         FROM Item__c
         WHERE Name LIKE :keyWord OR Category__r.Name LIKE :keyWord
-        LIMIT 10
+        LIMIT 50
       ];
 
       return itemList;
