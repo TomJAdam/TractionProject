@@ -10,7 +10,8 @@ export default class CheckoutButton extends LightningElement {
 
   handleClick() {
     checkoutBook({ objectId: this.item.Id, accountId: this.account })
-      .then(() => {
+      .then((res) => {
+        console.log("res :", res);
         const evt = new ShowToastEvent({
           title: "Success",
           message: "Item successfully checked out",

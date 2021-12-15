@@ -1,0 +1,25 @@
+<template>
+  <lightning-card title="Select Account" icon-name="custom:custom63">
+    <div class="slds-m-around_medium">
+      <lightning-combobox
+        name="progress"
+        value={selectedOpt}
+        placeholder="Select Account"
+        options={options}
+        onchange={handleChange}
+      ></lightning-combobox>
+    </div>
+  </lightning-card>
+  <lightning-card title="Search Items" icon-name="custom:custom63">
+    <div class="slds-m-around_medium">
+      <lightning-input
+        type="search"
+        onkeypress={handleKeyChange}
+        class="slds-m-bottom_small"
+        label="Search"
+        value={searchKey}
+        data-name="item"
+      ></lightning-input>
+    </div>
+  </lightning-card>
+</template>
