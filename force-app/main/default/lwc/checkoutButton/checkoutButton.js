@@ -7,6 +7,8 @@ export default class CheckoutButton extends LightningElement {
   item;
   @api
   account;
+  @api
+  triggerrefresh;
 
   handleClick() {
     checkoutBook({ objectId: this.item.Id, accountId: this.account })
@@ -18,6 +20,7 @@ export default class CheckoutButton extends LightningElement {
           variant: "success"
         });
         this.dispatchEvent(evt);
+        this.triggerrefresh();
       })
       .catch((e) => {
         const evt = new ShowToastEvent({

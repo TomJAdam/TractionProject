@@ -1,6 +1,7 @@
 import { LightningElement, wire, track } from "lwc";
 import findItems from "@salesforce/apex/ItemUtility.findItems";
 import findAccounts from "@salesforce/apex/AccountUtility.findAccounts";
+import { refreshApex } from "@salesforce/apex";
 
 const DELAY = 300;
 
@@ -8,9 +9,14 @@ export default class ItemSearch extends LightningElement {
   searchKey = "";
   @track options = [];
   @track selectedOpt;
+  @track items;
 
   @wire(findItems, { searchKey: "$searchKey" })
   items;
+
+  triggerRefresh = () => {
+    return refreshApex(this.items);
+  };
 
   handleKeyChange(event) {
     window.clearTimeout(this.delayTimeout);

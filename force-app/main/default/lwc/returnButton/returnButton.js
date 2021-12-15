@@ -7,6 +7,8 @@ export default class ReturnButton extends LightningElement {
   item;
   @api
   account;
+  @api
+  triggerrefresh;
 
   handleClick() {
     returnBook({ objectId: this.item.Id, accountId: this.account })
@@ -17,6 +19,7 @@ export default class ReturnButton extends LightningElement {
           variant: "success"
         });
         this.dispatchEvent(evt);
+        this.triggerrefresh();
       })
       .catch((e) => {
         const evt = new ShowToastEvent({
