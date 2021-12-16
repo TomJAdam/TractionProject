@@ -8,7 +8,7 @@ public with sharing class ItemUtility {
         SELECT Id, Name, Is_Checked_Out__c, Category__r.Name
         FROM Item__c
         WHERE Name LIKE :keyWord OR Category__r.Name LIKE :keyWord
-        LIMIT 50
+        ORDER BY Is_Checked_Out__c
       ];
 
       return itemList;
@@ -72,12 +72,17 @@ public with sharing class ItemUtility {
       List<Item_History__c> history = [
         SELECT Id
         FROM Item_History__c
-        WHERE Account__c = :accountId AND Item__c = :objectId
+        WHERE
+          Account__c = :accountId
+          AND Item__c = :objectId
+          AND Date_Returned__c = NULL
       ];
 
       Item_History__c record = history[0];
 
       record.Date_Returned__c = Date.today();
+
+      // throw exception if more than one record
 
       update record;
       update item;
