@@ -82,8 +82,6 @@ public with sharing class ItemUtility {
 
       record.Date_Returned__c = Date.today();
 
-      // throw exception if more than one record
-
       update record;
       update item;
 
