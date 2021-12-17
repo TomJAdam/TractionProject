@@ -12,7 +12,7 @@ public with sharing class ItemHistoryController {
         Date_Returned__c
       FROM Item_History__c
       WHERE Account__r.Name LIKE :key OR Item__r.Name LIKE :Key
-      ORDER BY Date_Returned__c NULLS LAST
+      ORDER BY Date_Returned__c NULLS FIRST
     ];
   }
 }
